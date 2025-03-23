@@ -1,0 +1,63 @@
+.pio_version 0
+.program infrared_send
+
+// Send 38kHz Raw IR signal
+// Clock: 1MHz
+// Even word: The number of times to repeat 8us ON / 18us OFF burst signal. Specify 0 to execute once. 
+// Odd word: The delay time[us] between burst signals. Specify 0 to delay 1[us].  
+
+.side_set 1
+  out x, 32 side 0
+burst:
+  nop side 0 [1]
+  nop side 1 [7]
+  jmp x-- burst side 0 [15]
+  out x, 32 side 0
+space:
+  jmp x-- space side 0
+
+
+.program infrared_receive
+
+// Receive 38KHz Raw IR signal
+// Clock: 10MHz
+// To start the program, put a threshold [us] into the TX FIFO. 
+// If the time exceeds threshold, return 0 and stall.
+// Even word: The length of burst signal (ON) [us]. 
+// Odd word: The length of space (OFF) between burst signals [us]. 
+  set x, 0
+  pull  // Load threshold [us] into y
+  mov y, osr
+  wait 0 pin 0
+burst_count:
+  mov x, ~x  // Increment x by ~x, x-- and ~x
+  jmp x-- burst_dec
+burst_dec:
+  mov x, ~x
+  jmp x!=y burst_comp
+  jmp threshold
+burst_comp:
+  jmp pin burst_end
+  jmp burst_count [4]
+burst_end:
+  in x, 32
+  
+  set x, 0
+space_count:
+  mov x, ~x  // Increment x by ~x, x-- and ~x
+  jmp x-- space_dec
+space_dec:
+  mov x, ~x
+  jmp x!=y space_comp
+  jmp threshold
+space_comp:
+  jmp pin space_count [5]
+  in x, 32
+  set x, 0
+  jmp burst_count
+
+threshold:
+  set x, 0
+  in x, 32
+stall:
+  jmp stall
