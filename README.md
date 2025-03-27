@@ -15,6 +15,7 @@
 | [infrared](infrared) | 赤外線送受信 | [RPi TPH Monitor](https://www.indoorcorgielec.com/products/rpi-tph-monitor-rev2/), [RPZ-IR-Sensor](https://www.indoorcorgielec.com/products/rpz-ir-sensor/), [RPZ-PIRS](https://www.indoorcorgielec.com/products/rpz-pirs/) |
 | [bm280](bme280) | 温度、湿度、気圧センサー | [RPi TPH Monitor](https://www.indoorcorgielec.com/products/rpi-tph-monitor-rev2/), [RPZ-IR-Sensor](https://www.indoorcorgielec.com/products/rpz-ir-sensor/), [RPZ-PIRS](https://www.indoorcorgielec.com/products/rpz-pirs/), [RPZ-CO2-Sensor](https://www.indoorcorgielec.com/products/rpz-co2-sensor/) |
 | [tsl2572](tsl2572) | 明るさ(照度)センサー | [RPZ-IR-Sensor](https://www.indoorcorgielec.com/products/rpz-ir-sensor/), [RPZ-PIRS](https://www.indoorcorgielec.com/products/rpz-pirs/) |
+| [pir](pir) | 人感センサー | [RPZ-PIRS](https://www.indoorcorgielec.com/products/rpz-pirs/) |
 | [lcdaqm](lcdaqm) | LCDディスプレイ | [RPi TPH Monitor](https://www.indoorcorgielec.com/products/rpi-tph-monitor-rev2/) |
 
 
