@@ -36,7 +36,7 @@ pico_sdk_init()
 
 # Add executable
 add_executable(${CMAKE_PROJECT_NAME}
-  main.c
+  frc.c
   scd41.c
 )
 
